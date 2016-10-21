@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Mail list</div>
+
+        <div class="panel-body">
+            <a href="/blacklist/add" class="btn bg-info button_on_panel" >Add new mails</a>
+            <form method="get" name="subscribers_search" action="/blacklist/search">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Mail" name="mail"  type="text" value="">
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <input class=" btn btn-info" type="submit" value="Search">
+                </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Mail</th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="mail : ${mails}">
+                    <td th:text="${mail.id}"></td>
+                    <td th:text="${mail.mail}"></td>
+                    <td><a th:href="@{/blacklist/delete/(id = ${mail.id})}" onclick="return confirm('Are you sure?')">Delete</a> </td>
+                </tr>
+
+            </table>
+            <ul class="pagination">
+                <li><a th:each="page : ${#numbers.sequence(1,countPages)}" th:text="${page}" th:href="@{/blacklist/list/(page=${page})}"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

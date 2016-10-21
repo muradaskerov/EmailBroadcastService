@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Group list</div>
+        <div class="panel-body">
+            <a href="/groups/add" class="btn bg-info" >Add Group</a>
+        </div>
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Group</th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="group : ${groups}">
+                    <td th:text="${group.id}"></td>
+                    <td th:text="${group.name}"></td>
+                    <td><a th:href="@{/groups/delete/(id = ${group.id})}" onclick="return confirm('Are you sure?')">Delete</a> </td>
+                </tr>
+
+            </table>
+            <ul class="pagination">
+                <li><a th:each="page : ${#numbers.sequence(1,countPages)}" th:text="${page}" th:href="@{/groups/list/(page=${page})}"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

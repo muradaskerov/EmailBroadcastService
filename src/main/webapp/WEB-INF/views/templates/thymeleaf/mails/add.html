@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" th:text="#{eng.add_mails}"></div>
+
+        <div class="panel-body">
+            <form th:action="@{/mails/add} + '?' + ${_csrf.parameterName} + '=' + ${_csrf.token}" method="post" enctype="multipart/form-data" >
+                <fieldset>
+                    <div class="form-group">
+                        <label for="mails" th:text="#{eng.mailswithcomma}"></label>
+                        <!--<div class="alert-danger">{{$errors->first('title_post')}}</div>-->
+                        <input id="mails" class="form-control" th:placeholder="#{eng.mails}"  value="" name="mailswithcomma" type="text" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label th:text="#{eng.mailsfromexcelfile}" ></label>
+                        <input type="file" name="excelfile"  >
+                    </div>
+
+                    <div class="form-group">
+                        <label th:text="#{eng.group}"></label>
+
+                        <div id="subcategoryDiv">
+                            <select class="subcategorySelectbox" name="group">
+                                <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Change this to a button or input when using this as a form -->
+                    <input type="submit" class="btn btn-success" th:value="#{eng.add}">
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

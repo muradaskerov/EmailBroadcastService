@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="#{eng.project_name}"></h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/login}" method="post" >
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" th:placeholder="#{eng.login}" name="username" type="text" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" th:placeholder="#{eng.password}" name="password" type="password" value="">
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <input type="submit" class="btn btn-success btn-block" th:value="#{eng.enter}" >
+                        </fieldset>
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

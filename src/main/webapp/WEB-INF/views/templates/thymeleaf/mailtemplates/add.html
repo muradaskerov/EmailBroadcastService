@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Add template</div>
+
+        <div class="panel-body">
+            <form th:action="@{/templates/add}" method="post">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="content">Subject</label>
+                        <!--<div class="alert-danger">{{$errors->first('title_post')}}</div>-->
+                        <input class="form-control" placeholder="Subject" value="" name="title" type="text" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <!--<div class="alert-danger">{{$errors->first('content')}}</div>-->
+                        <textarea value="" name="text" id="content"></textarea>
+                        <script>
+                            CKEDITOR.replace( 'content' );
+                        </script>
+                    </div>
+
+                    <!-- Change this to a button or input when using this as a form -->
+                    <input type="submit" class="btn btn-success" value="Add">
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

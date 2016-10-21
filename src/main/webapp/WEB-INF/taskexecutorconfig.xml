@@ -1,0 +1,28 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+
+    <bean id="taskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${corePoolSize}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="queueCapacity" value="${queueCapacity}" />
+        <property name="WaitForTasksToCompleteOnShutdown" value="${WaitForTasksToCompleteOnShutdown}" />
+    </bean>
+
+    <task:scheduled-tasks scheduler="mailSenderSchedulerTask">
+        <task:scheduled ref="mailSenderScheduler" method="run" cron="${cron.mailSenderSchedulerTask}" />
+    </task:scheduled-tasks>
+
+    <task:scheduler id="mailSenderSchedulerTask"/>
+
+</beans>

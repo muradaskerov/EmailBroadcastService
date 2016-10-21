@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+   <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+   <ul class="list-group">
+      <li class="list-group-item"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><a href="/mails/send" th:text="#{eng.send_broadcast}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span><a href="/mails/list" th:text="#{eng.mails_list}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span><a href="/mails/add" th:text="#{eng.add_mails}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><a href="/blacklist/list" th:text="#{eng.blacklist}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href="/templates/list" th:text="#{eng.templates}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span><a href="/templates/add" th:text="#{eng.add_template}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><a href="/groups/list" th:text="#{eng.groups}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span><a href="/groups/add" th:text="#{eng.add_groups}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span><a href="/statistics" th:text="#{eng.stats}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><a href="/mails/config" th:text="#{eng.configuration}"></a></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-king" aria-hidden="true"></span><a href="/users/list" th:text="#{eng.users}"></a></li>
+   </ul>
+
+
+</div>
+
+</body>
+
+</html>

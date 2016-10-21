@@ -1,0 +1,1 @@
+ALTER TABLE `sentmails` ADD INDEX `sentDate` (`sentDate`)

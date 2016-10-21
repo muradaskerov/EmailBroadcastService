@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Add group</div>
+
+        <div class="panel-body">
+            <form th:action="@{/groups/add}" method="post" >
+                <fieldset>
+                    <div class="form-group">
+                        <label for="group">Group</label>
+                        <!--<div class="alert-danger">{{$errors->first('title_post')}}</div>-->
+                        <input id="group" class="form-control" placeholder="Group" value="" name="name" type="text" autofocus>
+                    </div>
+
+                    <!-- Change this to a button or input when using this as a form -->
+                    <input type="submit" class="btn btn-success" value="Add">
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

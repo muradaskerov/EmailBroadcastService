@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" th:text="#{eng.mails_list}"></div>
+
+        <div class="panel-body">
+            <a href="/mails/add" class="btn bg-info button_on_panel" th:text="#{eng.add_mails}" ></a>
+            <form method="get" name="subscribers_search" action="/mails/search">
+
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" th:placeholder="#{eng.mail}"  name="mail"  type="text" value="">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" th:placeholder="#{eng.group}" name="group"  type="text"  value="">
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <input class=" btn btn-info" type="submit" th:value="#{eng.search}" >
+                </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th th:text="#{eng.id}"></th>
+                    <th th:text="#{eng.mail}"></th>
+                    <th th:text="#{eng.group}"></th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="mail : ${mails}">
+                    <td th:text="${mail.id}"></td>
+                    <td th:text="${mail.mail}"></td>
+                    <td th:text="${mail.group}"></td>
+                    <td><a th:href="@{/mails/delete/(id = ${mail.id})}" onclick="return confirm('Are you sure?')">Delete</a> </td>
+                </tr>
+
+            </table>
+            <ul class="pagination">
+                <li><a th:each="page : ${#numbers.sequence(1,countPages)}" th:text="${page}" th:href="@{/mails/list/(page=${page})}"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

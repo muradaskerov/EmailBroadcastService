@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" th:text="#{eng.send_new_broadcast}"></div>
+
+        <div class="panel-body">
+            <form th:action="@{/mails/send}" method="post">
+            <fieldset>
+
+                <div class="form-group">
+                    <label th:text="#{eng.template}"></label>
+                    <div id="subcategoryDiv1">
+                        <select id="templateSelectbox" class="subcategorySelectbox templateSelectbox" name="template">
+                            <option value="" selected></option>
+                            <option th:each="template : ${templates}" th:value="${template.id}" th:text="${template.title}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label th:text="#{eng.group}"></label>
+                    <div id="subcategoryDiv">
+                        <select class="subcategorySelectbox" name="group">
+                            <option value="" selected></option>
+                            <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="to" th:text="#{eng.to}"></label>
+                    <!--<div class="alert-danger">{{$errors->first('title_post')}}</div>-->
+                    <input id="to" class="form-control" th:placeholder="#{eng.to}" value="" name="recipient" type="text" autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" th:text="#{eng.subject}">Subject</label>
+                    <!--<div class="alert-danger">{{$errors->first('title_post')}}</div>-->
+                    <input id="subject" class="form-control" th:placeholder="#{eng.subject}" value="" name="subject" type="text" autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="content" th:text="#{eng.content}"></label>
+                    <!--<div class="alert-danger">{{$errors->first('content')}}</div>-->
+                    <textarea value="" name="content" id="content"></textarea>
+                    <script>
+                        CKEDITOR.replace( 'content' );
+                    </script>
+                </div>
+
+                <!-- Change this to a button or input when using this as a form -->
+                <input type="submit" class="btn btn-success" th:value="#{eng.send}">
+            </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

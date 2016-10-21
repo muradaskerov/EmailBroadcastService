@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Template list</div>
+
+        <div class="panel-body">
+            <a href="/templates/add" class="btn bg-info button_on_panel" >Add template</a>
+            <form method="get" name="subscribers_search" action="/templates/search">
+
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Title" name="title"  type="text" value="">
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <input class=" btn btn-info" type="submit" value="Search">
+                </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="template : ${templates}">
+                    <td th:text="${template.id}"></td>
+                    <td th:text="${template.title}"></td>
+                    <td><a th:href="@{/templates/delete/(id = ${template.id})}" onclick="return confirm('Are you sure?')">Delete</a> </td>
+                </tr>
+
+            </table>
+            <ul class="pagination">
+                <li><a th:each="page : ${#numbers.sequence(1,countPages)}" th:text="${page}" th:href="@{/templates/list/(page=${page})}"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

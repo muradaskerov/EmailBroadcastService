@@ -1,0 +1,11 @@
+#CHANGE file name to persistence.properties
+#AND modify it as your database confugurations
+
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/{your database}
+jdbc.username={your username}
+jdbc.password={your password}
+jdbc.database={your database}
+
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.show_sql=true

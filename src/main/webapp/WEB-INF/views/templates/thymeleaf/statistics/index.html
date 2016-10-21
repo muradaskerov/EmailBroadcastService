@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headFragement"></head>
+
+<body>
+
+<div class="container">
+    <div th:include="common :: panelPrimaryFragment" th:remove="tag"></div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" th:text="#{eng.stats}"></div>
+        <div class="panel-body">
+
+            <form method="get" th:action="@{/statistics}">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="input-daterange input-group" id="datepicker" style="width: 100%">
+                            <input type="text" class="input-md form-control" th:value="${date}"
+                                   name="date"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <input class=" btn btn-info" type="submit" th:value="#{eng.search}">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="panel-body">
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span style="width: 50%" class="pull-left" th:text="#{eng.sentsms}"></span>
+                    <span th:text="${sentmails}"></span>
+                    <br class="clearfix">
+                </li>
+                <li class="list-group-item">
+                    <span style="width: 50%" class="pull-left" th:text="#{eng.atqueuesms}"></span>
+                    <span th:text="${onqueue}"></span>
+                    <br class="clearfix">
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script th:src="@{/resources/js/bootstrap-datepicker.min.js}" type="text/javascript"></script>
+<script th:src="@{/resources/js/bootstrap-datepicker.az.min.js}" type="text/javascript"></script>
+<script>
+    $('.input-daterange').datepicker({
+        "setDate": new Date(),
+        format: "yyyy-mm-dd",
+    });
+</script>
+
+</body>
+
+</html>

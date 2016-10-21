@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="headFragement">
+    <title>Panel</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script th:src="@{/resources/bower_components/jquery/dist/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/resources/js/custom.js}" type="text/javascript"></script>
+    <link th:href="@{/resources/bower_components/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/resources/css/bootstrap-datepicker.min.css}" rel="stylesheet" />
+    <script th:src="@{/resources/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet" />
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 300px;
+        }
+        .input-group{
+            margin-bottom: 5px;
+        }
+        .clear{
+            clear: both;
+        }
+        .glyphicon{
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div th:fragment="panelPrimaryFragment">
+        <div class="panel panel-primary" >
+            <div class="panel-heading">
+                <a style="color: #fff;" href="/" th:text="#{eng.project_name}"></a>
+            </div>
+            <div class="panel-body">
+
+                <div class="pull-left">
+
+                    <div>
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span><a style="color: #000;" href="/" th:text="#{eng.homepage}"></a>
+                    </div>
+                </div>
+                <form action th:action="@{/logout}" method="post" class="pull-right">
+                    <input type="submit" class="btn btn-danger" th:value="#{eng.logout}">
+                    <input type="hidden" name="${_csrf.parameterName}"
+                           value="${_csrf.token}" />
+                </form>
+                <br class="clear" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+
+</html>
